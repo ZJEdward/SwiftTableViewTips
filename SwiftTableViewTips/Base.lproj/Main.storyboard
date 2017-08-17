@@ -48,6 +48,38 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell2" rowHeight="300" id="CNl-8C-ede">
+                                        <rect key="frame" x="0.0" y="72" width="375" height="300"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CNl-8C-ede" id="i1Q-8z-4pb">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="299"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view tag="2000" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PfF-tQ-Kbm">
+                                                    <rect key="frame" x="8" y="8" width="359" height="283.5"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" tag="2001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="yezi" translatesAutoresizingMaskIntoConstraints="NO" id="miI-kT-reb">
+                                                            <rect key="frame" x="0.0" y="0.0" width="359" height="283.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="400" id="Zbf-g3-zXU"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="miI-kT-reb" firstAttribute="leading" secondItem="PfF-tQ-Kbm" secondAttribute="leading" id="9Yp-wg-riy"/>
+                                                        <constraint firstAttribute="trailing" secondItem="miI-kT-reb" secondAttribute="trailing" id="CyH-LQ-Oha"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="PfF-tQ-Kbm" secondAttribute="bottom" id="5HS-XQ-BUi"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="PfF-tQ-Kbm" secondAttribute="trailing" id="ahd-Lh-bkj"/>
+                                                <constraint firstItem="PfF-tQ-Kbm" firstAttribute="leading" secondItem="i1Q-8z-4pb" secondAttribute="leadingMargin" id="kRN-Ho-gUM"/>
+                                                <constraint firstItem="PfF-tQ-Kbm" firstAttribute="top" secondItem="i1Q-8z-4pb" secondAttribute="topMargin" id="mB9-9j-JZA"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="IHe-3o-l4U"/>
@@ -72,4 +104,7 @@
             <point key="canvasLocation" x="32.799999999999997" y="38.23088455772114"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="yezi" width="1000" height="666"/>
+    </resources>
 </document>

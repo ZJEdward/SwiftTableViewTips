@@ -21,9 +21,6 @@ class ViewController: UIViewController {
         //去掉多余cell的分割线
         tableView.tableFooterView = UIView()
         
-        //高度自适应 (方式二)
-        tableView.estimatedRowHeight = 60
-        tableView.rowHeight = UITableViewAutomaticDimension
     }
 
 }
@@ -39,69 +36,53 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let label = cell.contentView.viewWithTag(1000) as! UILabel
-        label.text = textValues as String
-        if dict[String(indexPath.row)] == "0" {
-            label.numberOfLines = 0
-        } else {
-            label.numberOfLines = 1
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath)
+        
+        let bottomView = cell.contentView.viewWithTag(2000)
+        let imageView = cell.contentView.viewWithTag(2001)
+        
+        //相对屏幕的高度
+        let rect = bottomView?.convert((bottomView?.bounds)!, to: nil)
+        
+        var Y = UIScreen.main.bounds.size.height - (rect?.origin.y)! - 600
+        Y *= 0.2
+        if Y > 0 {
+            Y = 0
         }
+        if Y < -100 {
+            Y = -100
+        }
+        imageView?.frame.origin.y = Y
+        
         //分割线顶头(方式二)
         cell.separatorInset = UIEdgeInsets.zero
         return cell
     }
     
-    //高度自适应 (方式一)
-    /*
-     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-     let att = [NSFontAttributeName: UIFont.systemFont(ofSize: 17)]
-     
-     let height = textValues.boundingRect(with: CGSize(width: 300, height: 0), options: .usesLineFragmentOrigin, attributes: att, context: nil).size.height+30
-     
-     return height
-     }
-     */
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        let label = cell?.contentView.viewWithTag(1000) as! UILabel
-        
-        /*
-         if label.numberOfLines == 0 {
-         label.numberOfLines = 1
-         dict[String(indexPath.row)] = "1"
-         } else {
-         label.numberOfLines = 0
-         dict[String(indexPath.row)] = "0"
-         }
-         tableView.reloadData()
-         */
-        //有动画效果
-        tableView.beginUpdates()
-        if label.numberOfLines == 0 {
-            label.numberOfLines = 1
-            dict[String(indexPath.row)] = "1"
-        } else {
-            label.numberOfLines = 0
-            dict[String(indexPath.row)] = "0"
-        }
-        tableView.endUpdates()
-        
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 300
     }
     
-    
-    //分割线顶头(方式一)
-    /*
-     override func viewDidLayoutSubviews() {
-     self.tableView.separatorInset = UIEdgeInsets.zero
-     self.tableView.layoutMargins = UIEdgeInsets.zero
-     }
-     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-     cell.separatorInset = UIEdgeInsets.zero
-     cell.layoutMargins = UIEdgeInsets.zero
-     }
-     */
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        for cell in tableView.visibleCells {
+            
+            let bottomView = cell.contentView.viewWithTag(2000)
+            let imageView = cell.contentView.viewWithTag(2001)
+            
+            //相对屏幕的高度
+            let rect = bottomView?.convert((bottomView?.bounds)!, to: nil)
+            
+            var Y = UIScreen.main.bounds.size.height - (rect?.origin.y)! - 600
+            Y *= 0.2
+            if Y > 0 {
+                Y = 0
+            }
+            if Y < -100 {
+                Y = -100
+            }
+            imageView?.frame.origin.y = Y
+        }
+    }
     
     
     
